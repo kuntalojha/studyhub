@@ -9,6 +9,8 @@ import { BlurView } from "expo-blur";
 import { StatusBar } from "expo-status-bar";
 import { router } from "expo-router";
 import { COLORS } from "../../src/constants/colors";
+import FontAwesome5 from '@expo/vector-icons/FontAwesome5';
+
 
 const { width, height } = Dimensions.get("window");
 
@@ -99,7 +101,7 @@ export default function LoginScreen() {
                 start={{ x: 0, y: 0 }}
                 end={{ x: 1, y: 1 }}
               >
-                <Text style={styles.logoIcon}>✦</Text>
+                <Text style={styles.logoIcon}><FontAwesome5 name="book-reader" size={30} color="black" /></Text>
               </LinearGradient>
             </View>
             <Text style={styles.brandName}>StudyHub</Text>
@@ -109,7 +111,7 @@ export default function LoginScreen() {
           <Animated.View style={[styles.card, { transform: [{ translateX: shakeAnim }] }]}>
             <BlurView intensity={18} tint="dark" style={styles.blurCard}>
               <View style={styles.cardInner}>
-                <Text style={styles.cardTitle}>Welcome back</Text>
+                <Text style={styles.cardTitle}>Welcome Back 👋</Text>
                 <Text style={styles.cardSubtitle}>Sign in to continue your journey</Text>
 
                 {error ? (
@@ -120,12 +122,12 @@ export default function LoginScreen() {
 
                 {/* Username */}
                 <View style={styles.fieldGroup}>
-                  <Text style={styles.fieldLabel}>USERNAME</Text>
+                  <Text style={styles.fieldLabel}>👤 USERNAME</Text>
                   <View style={[styles.inputWrapper, focusedField === "username" && styles.inputWrapperFocused]}>
-                    <Text style={styles.inputIcon}>✉</Text>
+                    <Text style={styles.inputIcon}>👤</Text>
                     <TextInput
                       style={styles.input}
-                      placeholder="Enter username"
+                      placeholder="Username"
                       placeholderTextColor={COLORS.muted}
                       value={username}
                       onChangeText={setUsername}
@@ -140,7 +142,7 @@ export default function LoginScreen() {
                 {/* Password */}
                 <View style={styles.fieldGroup}>
                   <View style={styles.fieldLabelRow}>
-                    <Text style={styles.fieldLabel}>PASSWORD</Text>
+                    <Text style={styles.fieldLabel}>🔒 PASSWORD</Text>
                     <TouchableOpacity>
                       <Text style={styles.forgotText}>Forgot password?</Text>
                     </TouchableOpacity>

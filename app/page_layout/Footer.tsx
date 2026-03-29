@@ -4,9 +4,9 @@ import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 export function Footer() {
   const NAV = [
     { icon: "🏠", label: "Home", active: true, route: "/dashboard" },
-    { icon: "📖", label: "Study", active: false, route: "/dashboard/dsa" },
-    { icon: "📊", label: "Stats", active: false, route: "/dashboard/stats" },
-    { icon: "👤", label: "Profile", active: false, route: "/dashboard/profile" },
+    { icon: "📖", label: "Study", active: false, route: "/study" },
+    { icon: "📊", label: "Stats", active: false, route: "/status" },
+    { icon: "👤", label: "Profile", active: false, route: "/profile" },
   ];
   return (
     <View style={styles.footer}>

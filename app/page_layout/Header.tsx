@@ -1,5 +1,5 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { View, Text, TouchableOpacity, StyleSheet, } from "react-native";
+import { StyleSheet, Text, TouchableOpacity, View, } from "react-native";
 
 export function Header({ onLogout }: { onLogout: () => void }) {
   return (
@@ -11,7 +11,7 @@ export function Header({ onLogout }: { onLogout: () => void }) {
           </LinearGradient>
         </View>
         <View>
-          <Text style={styles.headerGreeting}>Good morning 👋</Text>
+          <Text style={styles.headerGreeting}>Have a nice day 👋</Text>
           <Text style={styles.headerName}>Admin</Text>
         </View>
       </View>
