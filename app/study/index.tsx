@@ -7,7 +7,7 @@ import { Header } from "../page_layout/Header";
 import { Footer } from "../page_layout/Footer";
 import { ModuleCard } from "../../src/components/cards/ModuleCards";
 
-export const MODULES = [
+export const SUBJECTS = [
   {
     id: "ds",
     title: "DS",
@@ -77,7 +77,7 @@ export default function DashboardScreen() {
           </View>
 
           <View style={styles.cardsColumn}>
-            {MODULES.map((m, i) => <ModuleCard key={m.id} item={m} index={i} />)}
+            {SUBJECTS.map((m, i) => <ModuleCard key={m.id} item={m} index={i} />)}
           </View>
 
           <View style={{ height: 100 }} />

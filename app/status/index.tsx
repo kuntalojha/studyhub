@@ -2,7 +2,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { ScrollView, StyleSheet, Text, View,SafeAreaView } from "react-native";
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import { Footer } from "../page_layout/Footer";
 import { Header } from "../page_layout/Header";
 
@@ -14,6 +14,7 @@ export const STATUS = [
     color1: "#4F8EF7",
     color2: "#1E40AF",
     accentColor: "#93C5FD",
+    route: "/subjects/ds",
   },
   {
     id: "dslab",
@@ -22,6 +23,7 @@ export const STATUS = [
     color1: "#34D399",
     color2: "#065F46",
     accentColor: "#6EE7B7",
+    route: "/subjects/dslab",
   },
   {
     id: "ppds",
@@ -30,6 +32,7 @@ export const STATUS = [
     color1: "#F59E0B",
     color2: "#92400E",
     accentColor: "#FCD34D",
+    route: "/subjects/ppds",
   },
   {
     id: "ppdslab",
@@ -38,6 +41,7 @@ export const STATUS = [
     color1: "#A78BFA",
     color2: "#5B21B6",
     accentColor: "#C4B5FD",
+    route: "/subjects/ppdslab",
   },
 ];
 

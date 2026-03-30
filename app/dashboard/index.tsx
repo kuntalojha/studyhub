@@ -1,36 +1,60 @@
-import React from "react";
-import { View, Text, StyleSheet, ScrollView, SafeAreaView } from "react-native";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
-import { Header } from "../page_layout/Header";
-import { Footer } from "../page_layout/Footer";
+import React from "react";
+import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import { ModuleCard } from "../../src/components/cards/ModuleCards";
+import { Footer } from "../page_layout/Footer";
+import { Header } from "../page_layout/Header";
 
 export const MODULES = [
   {
-    id: "dsa",
-    title: "DSA",
-    subtitle: "Data Structures & Algorithms",
+    id: "ds",
+    title: "Data Structures",
+    subtitle: "Theory",
     icon: "⚡",
     tag: "120 Problems",
-    progress: 0.42,
+    progress: 0.29,
     color1: "#4F8EF7",
     color2: "#1E40AF",
     accentColor: "#93C5FD",
-    route: "/dashboard/dsa",
+    route: "/subjects/ds",
   },
   {
-    id: "lab",
-    title: "Lab",
-    subtitle: "Practical Programming",
+    id: "dslab",
+    title: "Data Structures Lab",
+    subtitle: "Practical",
     icon: "🔬",
     tag: "36 Exercises",
     progress: 0.65,
     color1: "#34D399",
     color2: "#065F46",
     accentColor: "#6EE7B7",
-    route: "/dashboard/lab",
+    route: "/subjects/dslab",
+  },
+  {
+    id: "ppds",
+    title: "Python Programming & Data Structures",
+    subtitle: "Theory",
+    icon: "🐍",
+    tag: "120 Problems",
+    progress: 0.49,
+    color1: "#4F8EF7",
+    color2: "#1E40AF",
+    accentColor: "#93C5FD",
+    route: "/subjects/ppds",
+  },
+  {
+    id: "ppdslab",
+    title: "Python Programming & Data Structures Lab",
+    subtitle: "Practical",
+    icon: "🔬",
+    tag: "40 Exercises",
+    progress: 0.85,
+    color1: "#34D399",
+    color2: "#065F46",
+    accentColor: "#6EE7B7",
+    route: "/subjects/ppdslab",
   },
 ];
 
