@@ -1,6 +1,6 @@
+import { useTheme } from "@/src/utils/theme/ThemeProvider";
 import { router } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useTheme } from "../../src/utils/theme/ThemeProvider";
 
 const NAV = [
   { icon: "🏠", label: "Home",    active: true,  route: "/dashboard" },

@@ -1,7 +1,7 @@
+import { useTheme } from "@/src/utils/theme/ThemeProvider";
 import { LinearGradient } from "expo-linear-gradient";
-import { router } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { useTheme } from "../../src/utils/theme/ThemeProvider";
+
 
 export function Header({ onLogout }: { onLogout: () => void }) {
   const { theme, isDark, toggleTheme } = useTheme();

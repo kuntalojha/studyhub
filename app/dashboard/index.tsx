@@ -4,6 +4,9 @@ import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
 import { ModuleCard } from "../../src/components/cards/ModuleCards";
+import { useTheme } from "@/src/utils/theme/ThemeProvider";
+import { Footer } from "../page_layout/Footer";
+import { Header } from "../page_layout/Header";
 
 export const MODULES = [
   {
