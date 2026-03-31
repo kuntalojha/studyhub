@@ -1,6 +1,7 @@
+// app/_layout.tsx
 import { Stack } from "expo-router";
 import { ThemeProvider } from "../src/utils/theme/ThemeProvider";
- 
+
 export default function RootLayout() {
   return (
     <ThemeProvider>

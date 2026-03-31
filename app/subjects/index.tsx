@@ -3,10 +3,10 @@ import React from "react";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const SUBJECTS = [
-  { name: "Data Structures", route: "/dashboard/ds" },
-  { name: "DS Lab", route: "/dashboard/dslab" },
-  { name: "PPDS", route: "/dashboard/ppds" },
-  { name: "PPDS Lab", route: "/dashboard/ppdslab" },
+  { name: "Data Structures", route: "/subjects/ds" },
+  { name: "Data Structures Lab", route: "/subjects/dslab" },
+  { name: "Python Programming & Data Structures", route: "/subjects/ppds" },
+  { name: "Python Programming & Data Structures Lab", route: "/subjects/ppdslab" },
 ];
 
 export default function Index() {

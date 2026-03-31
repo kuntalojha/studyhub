@@ -19,7 +19,7 @@ export const SUBJECTS = [
     color1: "#4F8EF7",
     color2: "#1E40AF",
     accentColor: "#93C5FD",
-    route: "/dashboard/ds",
+    route: "/subjects/ds",
   },
   {
     id: "dslab",
@@ -31,7 +31,7 @@ export const SUBJECTS = [
     color1: "#34D399",
     color2: "#065F46",
     accentColor: "#6EE7B7",
-    route: "/dashboard/dslab",
+    route: "/subjects/dslab",
   },
   {
     id: "ppds",
@@ -43,7 +43,7 @@ export const SUBJECTS = [
     color1: "#F59E0B",
     color2: "#92400E",
     accentColor: "#FCD34D",
-    route: "/dashboard/ppds",
+    route: "/subjects/ppds",
   },
   {
     id: "ppdslab",
@@ -55,7 +55,7 @@ export const SUBJECTS = [
     color1: "#A78BFA",
     color2: "#5B21B6",
     accentColor: "#C4B5FD",
-    route: "/dashboard/ppdslab",
+    route: "/subjects/ppdslab",
   },
 ];
 

@@ -52,3 +52,45 @@ Join our community of developers creating universal apps.
 
 - [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
 - [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+
+
+## File structure
+```
+├── .expo
+├── .git
+├── .vscode
+├── app
+│    ├── auth_screen
+│    │   ├── _layout.tsx
+│    │   └──index.tsx
+│    ├── dashboard
+│    │   ├── _layout.tsx
+│    │   └──index.tsx
+│    ├── page_layout
+│    │   ├── Footer.tsx
+│    │   └── Header.tsx
+│    ├── profile
+│    │   ├── _layout.tsx
+│    │   └──index.tsx
+│    ├── stats
+│    │   ├── _layout.tsx
+│    │   └──index.tsx
+│    ├── styudy
+│    │   ├── _layout.tsx
+│    │   └──index.
+│    ├── subjects
+│    │      ├── ds
+│    │      ├── dslab
+│    │      ├── ppds
+│    │      ├── ppdslab
+|    │      ├── _layout.tsx
+|    │      └── index.tsx
+│    ├── _layout.tsx
+│    └── index.tsx
+│
+├── assets
+├── node_modules
+├── src
+├── .gitignore
+├── app.json
+
