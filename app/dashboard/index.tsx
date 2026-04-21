@@ -4,7 +4,7 @@ import { StyleSheet, Text, View, Animated } from "react-native";
 import { BlurView } from "expo-blur";
 import { useTheme } from "@/src/utils/theme/ThemeProvider";
 import PageLayout from "../page_layout/PageLayout";
-import quotes from "../subjects/dslab/quotes.json";
+import quotes from "@/src/quotes_data/quotes.json";
 
 export default function DashboardScreen() {
   const { theme, isDark } = useTheme();
@@ -56,12 +56,12 @@ export default function DashboardScreen() {
             >
               <Text style={styles.quoteMark}>"</Text>
               <Text style={[styles.quoteText, { color: theme.textPrimary || (isDark ? '#fff' : '#111') }]}>
-                {currentQuote.text}
+                {currentQuote.body}
               </Text>
               <View style={styles.authorRow}>
                 <View style={styles.authorLine} />
                 <Text style={styles.quoteAuthor}>
-                  {currentQuote.author}
+                  {currentQuote.by}
                 </Text>
               </View>
             </BlurView>
