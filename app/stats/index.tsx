@@ -1,11 +1,9 @@
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { ScrollView, StyleSheet, Text, View, SafeAreaView } from "react-native";
-import { Footer } from "../page_layout/Footer";
-import { Header } from "../page_layout/Header";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../../src/utils/theme/ThemeProvider";
+import PageLayout from "../page_layout/PageLayout";
 
 export const STATS = [
   {
@@ -107,16 +105,7 @@ export default function StatsScreen() {
   const { theme, isDark } = useTheme();
 
   return (
-    <View style={[styles.root, { backgroundColor: theme.bg }]}>
-      <StatusBar style={isDark ? "light" : "dark"} />
-
-      <LinearGradient colors={theme.bgGradient as any} style={StyleSheet.absoluteFill} />
-      <View style={[styles.bgOrb, { top: -60, right: -80, backgroundColor: theme.bgOrb1 }]} />
-      <View style={[styles.bgOrb, { bottom: 120, left: -60, width: 180, height: 180, backgroundColor: theme.bgOrb2 }]} />
-
-      <SafeAreaView style={styles.safe}>
-        <Header onLogout={() => router.replace("/auth_screen/login")} />
-
+    <PageLayout onLogout={() => router.replace("/auth_screen/login")}>
         <ScrollView
           style={styles.scroll}
           contentContainerStyle={{ paddingBottom: 100 }}
@@ -130,17 +119,11 @@ export default function StatsScreen() {
             <StatCard key={item.id} item={item} isDark={isDark} />
           ))}
         </ScrollView>
-
-        <Footer />
-      </SafeAreaView>
-    </View>
+    </PageLayout>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1 },
-  safe: { flex: 1 },
-  bgOrb: { position: "absolute", width: 220, height: 220, borderRadius: 110 },
   scroll: { paddingHorizontal: 20 },
   title: { fontSize: 20, fontWeight: "700", marginTop: 10, marginBottom: 20 },
   card: {

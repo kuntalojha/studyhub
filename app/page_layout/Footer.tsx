@@ -1,16 +1,17 @@
 import { useTheme } from "@/src/utils/theme/ThemeProvider";
-import { router } from "expo-router";
+import { router, usePathname } from "expo-router";
 import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
 
 const NAV = [
-  { icon: "🏠", label: "Home",    active: true,  route: "/dashboard" },
-  { icon: "📖", label: "Study",   active: false, route: "/study" },
-  { icon: "📊", label: "Stats",   active: false, route: "/stats" },
-  { icon: "👤", label: "Profile", active: false, route: "/profile" },
+  { icon: "🏠", label: "Home",    route: "/dashboard" },
+  { icon: "📖", label: "Study",   route: "/study" },
+  { icon: "📊", label: "Stats",   route: "/stats" },
+  { icon: "👤", label: "Profile", route: "/profile" },
 ];
 
 export function Footer() {
   const { theme } = useTheme();
+  const pathname = usePathname();
 
   return (
     <View
@@ -19,27 +20,30 @@ export function Footer() {
         { backgroundColor: theme.footerBg, borderTopColor: theme.footerBorder },
       ]}
     >
-      {NAV.map((n) => (
-        <TouchableOpacity
-          key={n.label}
-          style={styles.navItem}
-          onPress={() => router.push(n.route as any)}
-        >
-          <Text style={styles.navIcon}>{n.icon}</Text>
-          <Text
-            style={[
-              styles.navLabel,
-              { color: n.active ? theme.navLabelActive : theme.navLabel },
-              n.active && styles.navLabelActive,
-            ]}
+      {NAV.map((n) => {
+        const isActive = pathname === n.route || pathname.startsWith(`${n.route}/`);
+        return (
+          <TouchableOpacity
+            key={n.label}
+            style={styles.navItem}
+            onPress={() => router.push(n.route as any)}
           >
-            {n.label}
-          </Text>
-          {n.active && (
-            <View style={[styles.navDot, { backgroundColor: theme.navDot }]} />
-          )}
-        </TouchableOpacity>
-      ))}
+            <Text style={styles.navIcon}>{n.icon}</Text>
+            <Text
+              style={[
+                styles.navLabel,
+                { color: isActive ? theme.navLabelActive : theme.navLabel },
+                isActive && styles.navLabelActive,
+              ]}
+            >
+              {n.label}
+            </Text>
+            {isActive && (
+              <View style={[styles.navDot, { backgroundColor: theme.navDot }]} />
+            )}
+          </TouchableOpacity>
+        );
+      })}
     </View>
   );
 }

@@ -7,16 +7,13 @@ import {
   TouchableOpacity,
   ActivityIndicator,
   StyleSheet,
-  SafeAreaView,
-  StatusBar,
   RefreshControl,
 } from 'react-native';
 import { router } from 'expo-router';
-import { LinearGradient } from 'expo-linear-gradient';
 import { ExperimentService } from '../../../src/service/experimentService';
 import { Experiment } from '../../../src/types/experiment';
 import { useTheme } from '../../../src/utils/theme/ThemeProvider';
-import { Header } from '../../page_layout/Header';
+import { COLORS } from '../../../src/constants/colors';
 
 const TAG_COLORS = ['#667eea', '#f093fb', '#4facfe', '#43e97b', '#fa709a', '#a18cd1'];
 
@@ -55,8 +52,7 @@ export default function DSLabScreen() {
   // ── Loading state ──────────────────────────────────────────────────────────
   if (loading) {
     return (
-      <View style={[styles.center, { backgroundColor: theme.bg }]}>
-        <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
+      <View style={styles.center}>
         <ActivityIndicator size="large" color="#667eea" />
         <Text style={[styles.loadingText, { color: theme.textSecondary }]}>
           Fetching experiments…
@@ -117,22 +113,7 @@ export default function DSLabScreen() {
   };
 
   return (
-    <View style={[styles.root, { backgroundColor: theme.bg }]}>
-      {/* Background gradient — mirrors dashboard */}
-      <LinearGradient
-        colors={theme.bgGradient as any}
-        style={StyleSheet.absoluteFill}
-      />
-
-      {/* Decorative orbs */}
-      <View style={[styles.bgOrb, { top: -60, right: -80, backgroundColor: theme.bgOrb1 }]} />
-      <View style={[styles.bgOrb, { bottom: 120, left: -60, width: 180, height: 180, backgroundColor: theme.bgOrb2 }]} />
-
-      <SafeAreaView style={styles.safe}>
-        <StatusBar barStyle={isDark ? 'light-content' : 'dark-content'} />
-
-        {/* Header */}
-        <Header onLogout={() => router.replace('/auth_screen/login')} />
+    <View style={[styles.root, { backgroundColor: isDark ? COLORS.bg2 : COLORS.white, }]}>
         <View style={styles.subHeader}>
           <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
             <Text style={[styles.backIcon, { color: theme.textPrimary }]}>←</Text>
@@ -184,22 +165,14 @@ export default function DSLabScreen() {
             ) : null
           }
         />
-      </SafeAreaView>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   root: { flex: 1 },
-  safe: { flex: 1 },
   center: { flex: 1, justifyContent: 'center', alignItems: 'center' },
   loadingText: { marginTop: 14, fontSize: 15 },
-  bgOrb: {
-    position: 'absolute',
-    width: 220,
-    height: 220,
-    borderRadius: 110,
-  },
 
   // Header
   header: {

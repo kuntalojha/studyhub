@@ -15,11 +15,10 @@ import {
   Clipboard,
 } from 'react-native';
 import { useLocalSearchParams, router } from 'expo-router';
-import { LinearGradient } from 'expo-linear-gradient';
 import { ExperimentService } from '../../../../src/service/experimentService';
 import { Experiment } from '../../../../src/types/experiment';
 import { useTheme } from '../../../../src/utils/theme/ThemeProvider';
-import { Header } from '../../../page_layout/Header';
+import { COLORS } from '../../../../src/constants/colors';
 
 type TabType = 'question' | 'code' | 'output';
 
@@ -113,22 +112,7 @@ export default function ExperimentDetailScreen() {
   const tabBarBorder = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(79,142,247,0.10)';
 
   return (
-    <View style={[styles.root, { backgroundColor: theme.bg }]}>
-      {/* Background gradient — mirrors dashboard */}
-      <LinearGradient
-        colors={theme.bgGradient as any}
-        style={StyleSheet.absoluteFill}
-      />
-
-      {/* Decorative orbs */}
-      <View style={[styles.bgOrb, { top: -60, right: -80, backgroundColor: theme.bgOrb1 }]} />
-      <View style={[styles.bgOrb, { bottom: 120, left: -60, width: 180, height: 180, backgroundColor: theme.bgOrb2 }]} />
-
-      <SafeAreaView style={styles.safe}>
-        <StatusBar barStyle="light-content" />
-
-        {/* ── HEADER ──────────────────────────────────────────────────────── */}
-        <Header onLogout={() => router.replace('/auth_screen/login')} />
+    <View style={[styles.root, { backgroundColor: isDark ? COLORS.bg2 : COLORS.white, }]}>
           <View style={styles.subHeader}>
             <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
               <Text style={[styles.backIcon, { color: theme.textPrimary }]}>←</Text>
@@ -277,7 +261,6 @@ export default function ExperimentDetailScreen() {
             </View>
           )}
         </ScrollView>
-      </SafeAreaView>
     </View>
   );
 }

@@ -1,126 +1,130 @@
-import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
-import { StatusBar } from "expo-status-bar";
-import React from "react";
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from "react-native";
-import { ModuleCard } from "../../src/components/cards/ModuleCards";
+import React, { useState, useEffect, useRef } from "react";
+import { StyleSheet, Text, View, Animated } from "react-native";
+import { BlurView } from "expo-blur";
 import { useTheme } from "@/src/utils/theme/ThemeProvider";
-import { Footer } from "../page_layout/Footer";
-import { Header } from "../page_layout/Header";
-
-export const MODULES = [
-  {
-    id: "ds",
-    title: "Data Structures",
-    subtitle: "Theory",
-    icon: "⚡",
-    tag: "120 Problems",
-    progress: 0.29,
-    color1: "#4F8EF7",
-    color2: "#1E40AF",
-    accentColor: "#93C5FD",
-    route: "/subjects/ds",
-  },
-  {
-    id: "dslab",
-    title: "Data Structures Lab",
-    subtitle: "Practical",
-    icon: "🔬",
-    tag: "36 Exercises",
-    progress: 0.65,
-    color1: "#34D399",
-    color2: "#065F46",
-    accentColor: "#6EE7B7",
-    route: "/subjects/dslab",
-  },
-  {
-    id: "ppds",
-    title: "Python Programming & Data Structures",
-    subtitle: "Theory",
-    icon: "🐍",
-    tag: "120 Problems",
-    progress: 0.49,
-    color1: "#4F8EF7",
-    color2: "#1E40AF",
-    accentColor: "#93C5FD",
-    route: "/subjects/ppds",
-  },
-  {
-    id: "ppdslab",
-    title: "Python Programming & Data Structures Lab",
-    subtitle: "Practical",
-    icon: "🔬",
-    tag: "40 Exercises",
-    progress: 0.85,
-    color1: "#34D399",
-    color2: "#065F46",
-    accentColor: "#6EE7B7",
-    route: "/subjects/ppdslab",
-  },
-];
+import PageLayout from "../page_layout/PageLayout";
+import quotes from "../subjects/dslab/quotes.json";
 
 export default function DashboardScreen() {
   const { theme, isDark } = useTheme();
 
+  // Get current quote index based on 30-minute block increments
+  // 30 minutes = 30 * 60 * 1000 = 1800000 ms
+  const getQuoteIndex = () => Math.floor(Date.now() / 1800000) % quotes.length;
+
+  const [quoteIndex, setQuoteIndex] = useState(getQuoteIndex());
+  const fadeAnim = useRef(new Animated.Value(1)).current;
+
+  useEffect(() => {
+    // Check every 10 seconds if we have entered a new half-hour block
+    const interval = setInterval(() => {
+      const newIndex = getQuoteIndex();
+      if (newIndex !== quoteIndex) {
+        // Fade out
+        Animated.timing(fadeAnim, {
+          toValue: 0,
+          duration: 600,
+          useNativeDriver: true,
+        }).start(() => {
+          // Switch quote while invisible
+          setQuoteIndex(newIndex);
+          // Fade back in
+          Animated.timing(fadeAnim, {
+            toValue: 1,
+            duration: 600,
+            useNativeDriver: true,
+          }).start();
+        });
+      }
+    }, 10000);
+
+    return () => clearInterval(interval);
+  }, [quoteIndex, fadeAnim]);
+
+  const currentQuote = quotes[quoteIndex];
+
   return (
-    <View style={[styles.root, { backgroundColor: theme.bg }]}>
-      <StatusBar style={isDark ? "light" : "dark"} />
-
-      {/* Background gradient */}
-      <LinearGradient
-        colors={theme.bgGradient as any}
-        style={StyleSheet.absoluteFill}
-      />
-
-      {/* Decorative orbs */}
-      <View style={[styles.bgOrb, { top: -60, right: -80, backgroundColor: theme.bgOrb1 }]} />
-      <View style={[styles.bgOrb, { bottom: 120, left: -60, width: 180, height: 180, backgroundColor: theme.bgOrb2 }]} />
-
-      <SafeAreaView style={styles.safe}>
-        <Header onLogout={() => router.replace("/auth_screen/login")} />
-
-        <ScrollView
-          style={styles.scroll}
-          contentContainerStyle={styles.scrollContent}
-          showsVerticalScrollIndicator={false}
-        >
-          <View style={styles.sectionHeader}>
-            <Text style={[styles.sectionTitle, { color: theme.sectionTitle }]}>
-              My Modules
-            </Text>
-            <Text style={[styles.sectionSub, { color: theme.sectionSub }]}>
-              Pick up where you left off
-            </Text>
+    <PageLayout onLogout={() => router.replace("/auth_screen/login")}>
+      <View style={styles.container}>
+        <Animated.View style={{ opacity: fadeAnim, width: '100%' }}>
+          <View style={styles.cardWrapper}>
+            <BlurView
+              intensity={isDark ? 30 : 60}
+              tint={isDark ? "dark" : "light"}
+              style={styles.blurCard}
+            >
+              <Text style={styles.quoteMark}>"</Text>
+              <Text style={[styles.quoteText, { color: theme.textPrimary || (isDark ? '#fff' : '#111') }]}>
+                {currentQuote.text}
+              </Text>
+              <View style={styles.authorRow}>
+                <View style={styles.authorLine} />
+                <Text style={styles.quoteAuthor}>
+                  {currentQuote.author}
+                </Text>
+              </View>
+            </BlurView>
           </View>
-
-          <View style={styles.cardsColumn}>
-            {MODULES.map((m, i) => (
-              <ModuleCard key={m.id} item={m} index={i} />
-            ))}
-          </View>
-
-          <View style={{ height: 100 }} />
-        </ScrollView>
-
-        <Footer />
-      </SafeAreaView>
-    </View>
+        </Animated.View>
+      </View>
+    </PageLayout>
   );
 }
 
 const styles = StyleSheet.create({
-  root: { flex: 1 },
-  safe: { flex: 1 },
-  bgOrb: {
-    position: "absolute",
-    width: 220,
-    height: 220,
-    borderRadius: 110,
+  container: { 
+    flex: 1, 
+    paddingHorizontal: 24, 
+    justifyContent: 'center', 
+    alignItems: 'center' 
   },
-  sectionHeader: { paddingHorizontal: 20, marginBottom: 14 },
-  sectionTitle: { fontSize: 17, fontWeight: "700", marginBottom: 2 },
-  sectionSub: { fontSize: 12 },
-  scroll: { flex: 1 },
-  scrollContent: { paddingTop: 8 },
-  cardsColumn: { paddingHorizontal: 20, gap: 14 },
+  cardWrapper: {
+    width: '100%',
+    borderRadius: 24,
+    overflow: 'hidden',
+    borderWidth: 1,
+    borderColor: 'rgba(255,255,255,0.15)',
+    shadowColor: '#4F8EF7',
+    shadowOffset: { width: 0, height: 10 },
+    shadowOpacity: 0.15,
+    shadowRadius: 20,
+    elevation: 8,
+  },
+  blurCard: {
+    padding: 32,
+    paddingTop: 24,
+  },
+  quoteMark: {
+    fontSize: 76,
+    color: 'rgba(79,142,247,0.35)', 
+    fontWeight: '900',
+    marginBottom: -40,
+    textAlign: 'left',
+  },
+  quoteText: {
+    fontSize: 21,
+    fontWeight: '600',
+    lineHeight: 32,
+    textAlign: 'center',
+    marginBottom: 28,
+    zIndex: 1,
+  },
+  authorRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-end',
+  },
+  authorLine: {
+    width: 24,
+    height: 2,
+    backgroundColor: '#4F8EF7',
+    marginRight: 10,
+  },
+  quoteAuthor: {
+    fontSize: 15,
+    fontWeight: '700',
+    color: '#4F8EF7',
+    fontStyle: 'italic',
+  },
 });
