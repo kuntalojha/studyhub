@@ -113,7 +113,8 @@ export default function DSLabScreen() {
   };
 
   return (
-    <View style={[styles.root, { backgroundColor: isDark ? COLORS.bg2 : COLORS.white, }]}>
+    // <View style={[styles.root, { backgroundColor: isDark ? COLORS.bg2 : COLORS.white, }]}>
+      <View style={[styles.root, { backgroundColor: theme.bg }]}> 
         <View style={styles.subHeader}>
           <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
             <Text style={[styles.backIcon, { color: theme.textPrimary }]}>←</Text>

@@ -3,7 +3,8 @@ import { router } from "expo-router";
 import React from "react";
 import { ScrollView, StyleSheet, Text, View } from "react-native";
 import { useTheme } from "../../src/utils/theme/ThemeProvider";
-import PageLayout from "../page_layout/PageLayout";
+// import { useTheme } from "../../src/utils/theme/ThemeProvider";
+// import PageLayout from "../page_layout/PageLayout";
 
 export const STATS = [
   {
@@ -105,7 +106,7 @@ export default function StatsScreen() {
   const { theme, isDark } = useTheme();
 
   return (
-    <PageLayout onLogout={() => router.replace("/auth_screen/login")}>
+    // <PageLayout onLogout={() => router.replace("/auth_screen/login")}>
         <ScrollView
           style={styles.scroll}
           contentContainerStyle={{ paddingBottom: 100 }}
@@ -119,7 +120,7 @@ export default function StatsScreen() {
             <StatCard key={item.id} item={item} isDark={isDark} />
           ))}
         </ScrollView>
-    </PageLayout>
+    // </PageLayout>
   );
 }
 

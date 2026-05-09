@@ -3,7 +3,9 @@ import { View, Text, StyleSheet, ScrollView } from "react-native";
 import { router } from "expo-router";
 import { ModuleCard } from "../../src/components/cards/ModuleCards";
 import { useTheme } from "../../src/utils/theme/ThemeProvider";
-import PageLayout from "../page_layout/PageLayout";
+// import { ModuleCard } from "../../src/components/cards/ModuleCards";
+// import { useTheme } from "../../src/utils/theme/ThemeProvider";
+// import PageLayout from "../page_layout/PageLayout";
 
 export const SUBJECTS = [
   {
@@ -60,7 +62,7 @@ export default function DashboardScreen() {
   const { theme } = useTheme();
 
   return (
-    <PageLayout onLogout={() => router.replace("/auth_screen/login")}>
+    // <PageLayout onLogout={() => router.replace("/auth_screen/login")}>
         <ScrollView style={styles.scroll} contentContainerStyle={styles.scrollContent} showsVerticalScrollIndicator={false}>
 
           <View style={styles.sectionHeader}>
@@ -74,7 +76,7 @@ export default function DashboardScreen() {
 
           <View style={{ height: 100 }} />
         </ScrollView>
-    </PageLayout>
+    // </PageLayout>
   );
 }
 

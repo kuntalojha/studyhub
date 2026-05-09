@@ -54,7 +54,8 @@ export default function LoginScreen() {
       setLoading(false);
       const isValid = username === "admin" && password === "1234";
       if (isValid) {
-        router.replace("/dashboard" as any);
+        router.replace("/(tabs)" as any);
+        // router.replace("/(tabs)");
       } else {
         setError("Invalid username or password.");
         shake();
@@ -68,7 +69,8 @@ export default function LoginScreen() {
 
       <LinearGradient
         colors={[COLORS.bg1, COLORS.bg2, "#0C1530"]}
-        style={StyleSheet.absoluteFill}
+        // style={StyleSheet.absoluteFill}
+        style={StyleSheet.absoluteFillObject}
         start={{ x: 0.2, y: 0 }}
         end={{ x: 0.8, y: 1 }}
       />

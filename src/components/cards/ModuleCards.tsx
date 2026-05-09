@@ -2,13 +2,26 @@ import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import { useEffect, useRef } from "react";
 import { Animated, Platform, StyleSheet, Text, TouchableOpacity, View } from "react-native";
-import { MODULES } from "../../../app/dashboard";
+// import { MODULES } from "../../../app/dashboard";
 import { ProgressBar } from "../progress_bar/Progressbar";
 import { useTheme } from "../../utils/theme/ThemeProvider";
 
+type ModuleItem = {
+  id: string;
+  title: string;
+  subtitle: string;
+  icon: string;
+  tag: string;
+  progress: number;
+  color1: string;
+  color2: string;
+  accentColor: string;
+  route: string;
+};
+
 const ND = Platform.OS !== "web";
 
-export function ModuleCard({ item, index }: { item: typeof MODULES[0]; index: number }) {
+export function ModuleCard({ item, index }: { item: ModuleItem; index: number }) {
   const { theme, isDark } = useTheme();
   const scale = useRef(new Animated.Value(0.92)).current;
   const opacity = useRef(new Animated.Value(0)).current;

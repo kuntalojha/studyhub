@@ -84,6 +84,7 @@ export default function ExperimentDetailScreen() {
   // ── Loading ──────────────────────────────────────────────────────────────
   if (loading) {
     return (
+      // <View style={[styles.center, { backgroundColor: isDark ? COLORS.bg2 : COLORS.white, }]}>
       <View style={[styles.center, { backgroundColor: theme.bg }]}>
         <ActivityIndicator size="large" color="#667eea" />
         <Text style={[styles.loadingText, { color: theme.textSecondary }]}>
@@ -95,7 +96,8 @@ export default function ExperimentDetailScreen() {
 
   if (!experiment) {
     return (
-      <View style={[styles.center, { backgroundColor: theme.bg }]}>
+      // <View style={[styles.center, { backgroundColor: isDark ? COLORS.bg2 : COLORS.white, }]}>
+      <View style={[styles.center, { backgroundColor: 'transparent' }]}>
         <Text style={styles.notFoundIcon}>🔍</Text>
         <Text style={[styles.notFoundText, { color: theme.textMuted }]}>
           Experiment not found
@@ -112,7 +114,8 @@ export default function ExperimentDetailScreen() {
   const tabBarBorder = isDark ? 'rgba(255,255,255,0.07)' : 'rgba(79,142,247,0.10)';
 
   return (
-    <View style={[styles.root, { backgroundColor: isDark ? COLORS.bg2 : COLORS.white, }]}>
+    // <View style={[styles.root, { backgroundColor: isDark ? COLORS.bg2 : COLORS.white,}]}>
+      <View style={[styles.root, { backgroundColor: theme.bg }]}>
           <View style={styles.subHeader}>
             <TouchableOpacity onPress={() => router.back()} style={styles.backBtn}>
               <Text style={[styles.backIcon, { color: theme.textPrimary }]}>←</Text>

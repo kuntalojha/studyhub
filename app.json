@@ -8,10 +8,13 @@
     "scheme": "studyhub",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
+    "backgroundColor": "#0A0F1E",
     "ios": {
-      "supportsTablet": true
+      "supportsTablet": true,
+      "backgroundColor": "#0A0F1E"
     },
     "android": {
+      "backgroundColor": "#0A0F1E",
       "adaptiveIcon": {
         "backgroundColor": "#E6F4FE",
         "foregroundImage": "./assets/images/adaptive-icon.png",
